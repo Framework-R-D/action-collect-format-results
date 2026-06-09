@@ -5,7 +5,7 @@
 ## Usage
 
 ```yaml
-- uses: Framework-R-D/action-collect-format-results@v1  # pin to commit SHA in production
+- uses: Framework-R-D/action-collect-format-results@1e3eeee20808b0c8e754955f7633c38ff18a603d # v1
   with:
     input-name: value
 ```
