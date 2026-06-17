@@ -14,7 +14,7 @@ extracted for standalone reuse.
 
 | Name | Description | Required | Default |
 | ---- | ----------- | -------- | ------- |
-| `results-json` | JSON object containing job results | True |  |
+| `results-json` | JSON object containing job results | True | |
 
 **Outputs:**
 
