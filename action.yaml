@@ -23,7 +23,7 @@ runs:
         RESULTS_JSON: ${{ inputs.results-json }}
       run: |
         python3 -c "
-        import json, os
+        import json, os, secrets
         data = json.loads(os.environ['RESULTS_JSON'])
         messages = []
         has_failures = False
@@ -41,7 +41,11 @@ runs:
         if messages:
             output_msg = '### Format Fixes Applied\n' + '\n'.join(messages) + '\n\n⚠️ **Note:** Some issues may require manual review.'
 
+        delimiter = f'EOF_{secrets.token_hex(16)}'
+        while delimiter in output_msg:
+            delimiter = f'EOF_{secrets.token_hex(16)}'
+
         with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
-            f.write(f'message<<EOF\n{output_msg}\nEOF\n')
+            f.write(f'message<<{delimiter}\n{output_msg}\n{delimiter}\n')
             f.write(f'has_failures={str(has_failures).lower()}\n')
         "
